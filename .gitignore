@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+*.csv
+notes.json
+history.json
+vault.enc
+.DS_Store
+.vscode/
