@@ -20,3 +20,6 @@ def load_notes() -> dict:
 
 def save_notes(notes: dict) -> None:
     NOTES_FILE.write_text(json.dumps(notes, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
