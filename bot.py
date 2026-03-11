@@ -16,3 +16,7 @@ def load_notes() -> dict:
     if NOTES_FILE.exists():
         return json.loads(NOTES_FILE.read_text(encoding="utf-8"))
     return {}
+
+
+def save_notes(notes: dict) -> None:
+    NOTES_FILE.write_text(json.dumps(notes, indent=2, ensure_ascii=False), encoding="utf-8")
