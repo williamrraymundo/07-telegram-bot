@@ -23,3 +23,7 @@ def save_notes(notes: dict) -> None:
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(
+        "Hi! I can keep notes and set reminders.\n"
+        "/note <text> - save a note\n"
+        "/notes - list your notes\n"
