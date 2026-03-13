@@ -27,3 +27,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "Hi! I can keep notes and set reminders.\n"
         "/note <text> - save a note\n"
         "/notes - list your notes\n"
+        "/delnote <n> - delete a note\n"
+        "/remind <seconds> <text> - set a reminder"
+    )
+
