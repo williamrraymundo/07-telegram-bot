@@ -31,3 +31,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "/remind <seconds> <text> - set a reminder"
     )
 
+
+async def note(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    text = " ".join(context.args)
+    if not text:
+        await update.message.reply_text("Usage: /note <text>")
+        return
+    notes = load_notes()
+    user_notes = notes.setdefault(str(update.effective_user.id), [])
