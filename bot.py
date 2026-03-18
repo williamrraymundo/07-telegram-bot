@@ -39,3 +39,6 @@ async def note(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         return
     notes = load_notes()
     user_notes = notes.setdefault(str(update.effective_user.id), [])
+    user_notes.append({"text": text, "date": datetime.now().isoformat(timespec="minutes")})
+    save_notes(notes)
+    await update.message.reply_text(f"Saved note #{len(user_notes)}.")
