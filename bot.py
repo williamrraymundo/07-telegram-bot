@@ -57,3 +57,10 @@ async def delete_note(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     notes = load_notes()
     user_notes = notes.get(str(update.effective_user.id), [])
     try:
+        removed = user_notes.pop(int(context.args[0]) - 1)
+    except (IndexError, ValueError):
+        await update.message.reply_text("Usage: /delnote <number>")
+        return
+    save_notes(notes)
+    await update.message.reply_text(f"Deleted: {removed['text']}")
+
