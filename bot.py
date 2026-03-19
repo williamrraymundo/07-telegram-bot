@@ -50,3 +50,10 @@ async def list_notes(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
         await update.message.reply_text("You have no notes yet.")
         return
     lines = [f"{i}. {n['text']} ({n['date']})" for i, n in enumerate(user_notes, 1)]
+    await update.message.reply_text("\n".join(lines))
+
+
+async def delete_note(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    notes = load_notes()
+    user_notes = notes.get(str(update.effective_user.id), [])
+    try:
