@@ -42,3 +42,11 @@ async def note(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_notes.append({"text": text, "date": datetime.now().isoformat(timespec="minutes")})
     save_notes(notes)
     await update.message.reply_text(f"Saved note #{len(user_notes)}.")
+
+
+async def list_notes(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    user_notes = load_notes().get(str(update.effective_user.id), [])
+    if not user_notes:
+        await update.message.reply_text("You have no notes yet.")
+        return
+    lines = [f"{i}. {n['text']} ({n['date']})" for i, n in enumerate(user_notes, 1)]
