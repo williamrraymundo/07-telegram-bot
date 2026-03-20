@@ -64,3 +64,6 @@ async def delete_note(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     save_notes(notes)
     await update.message.reply_text(f"Deleted: {removed['text']}")
 
+
+async def reminder_callback(context: ContextTypes.DEFAULT_TYPE) -> None:
+    await context.bot.send_message(context.job.chat_id, f"⏰ Reminder: {context.job.data}")
