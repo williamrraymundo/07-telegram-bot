@@ -67,3 +67,10 @@ async def delete_note(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
 
 async def reminder_callback(context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.send_message(context.job.chat_id, f"⏰ Reminder: {context.job.data}")
+
+
+async def remind(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    try:
+        seconds = int(context.args[0])
+        text = " ".join(context.args[1:]) or "Time's up!"
+    except (IndexError, ValueError):
