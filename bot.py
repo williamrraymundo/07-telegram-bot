@@ -74,3 +74,8 @@ async def remind(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         seconds = int(context.args[0])
         text = " ".join(context.args[1:]) or "Time's up!"
     except (IndexError, ValueError):
+        await update.message.reply_text("Usage: /remind <seconds> <text>")
+        return
+    context.job_queue.run_once(reminder_callback, seconds, chat_id=update.effective_chat.id, data=text)
+    await update.message.reply_text(f"I will remind you in {seconds}s.")
+
