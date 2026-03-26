@@ -79,3 +79,11 @@ async def remind(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     context.job_queue.run_once(reminder_callback, seconds, chat_id=update.effective_chat.id, data=text)
     await update.message.reply_text(f"I will remind you in {seconds}s.")
 
+
+def main() -> None:
+    app = Application.builder().token(os.environ["TELEGRAM_TOKEN"]).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("note", note))
+    app.add_handler(CommandHandler("notes", list_notes))
+    app.add_handler(CommandHandler("delnote", delete_note))
+    app.add_handler(CommandHandler("remind", remind))
