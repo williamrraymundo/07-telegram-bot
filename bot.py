@@ -87,3 +87,6 @@ def main() -> None:
     app.add_handler(CommandHandler("notes", list_notes))
     app.add_handler(CommandHandler("delnote", delete_note))
     app.add_handler(CommandHandler("remind", remind))
+    app.run_polling()
+
+
