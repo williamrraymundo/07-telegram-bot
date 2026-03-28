@@ -20,3 +20,7 @@ pip install -r requirements.txt
 cp .env.example .env   # add your bot token
 python bot.py
 ```
+
+## License
+
+MIT © William Raymundo
